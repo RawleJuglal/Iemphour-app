@@ -8,6 +8,15 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
+var passport = require('passport');  
+var LocalStrategy = require('passport-local').Strategy;  
+var mongoose = require('mongoose');  
+var flash = require('connect-flash');  
+var session = require('express-session');
+
+// var configDB = require('./config/database.js');
+// mongoose.connect(configDB.url);
+
 var app = express();
 
 // view engine setup
@@ -22,8 +31,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(session({ secret: 'shhsecret' }));  
+app.use(passport.initialize());  
+app.use(passport.session());  
+app.use(flash());
+
 app.use('/', routes);
 app.use('/users', users);
+
+// require('./config/passport')(passport);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
