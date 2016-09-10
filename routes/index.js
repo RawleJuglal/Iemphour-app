@@ -9,11 +9,21 @@ router.get('/', function(req, res, next) {
 
 router.get('/login', function(req, res, next) {  
   res.render('login.ejs', { message: req.flash('loginMessage') });
-});
+})
+    .post('/login', passport.authenticate('local-login', {  
+      successRedirect: '/profile',
+      failureRedirect: '/login',
+      failureFlash: true,
+    }));
 
 router.get('/signup', function(req, res) {  
   res.render('signup.ejs', { message: req.flash('loginMessage') });
-});
+})
+    .post('/signup', passport.authenticate('local-signup', {  
+      successRedirect: '/profile',
+      failureRedirect: '/signup',
+      failureFlash: true,
+    }));
 
 router.get('/profile', isLoggedIn, function(req, res) {  
   res.render('profile.ejs', { user: req.user });
