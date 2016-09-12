@@ -1,5 +1,52 @@
 <% include partials/head %>  
   <body>
+    <div id='fullBody'>
+        <div class='main'>
+          <div class='container-fluid'>
+            <div class='row'>
+              <div class='col-xs-12 col-md-6 col-md-offset-3 text-center'>
+                <div id='imageDiv'>
+                    <img id='imageI' src='/images/TheIemphourI.png'></img>
+                    <!--HOW DO I MAKE NGSHOW IMAGE BASED ON SIZE OF SCREEN-->
+                </div><!--End of imageDiv-->
+              </div><!--End of col-xs-12-->
+            </div><!--End of row-->
+            <div id='mainText' class='row'>
+              <div class='col-sm-12 text-center'>
+                <div class='mainTextDiv'>
+                  <h1>WORK-ON-DEMAND</h1>
+                  <p class='text1'><span>empowering</span> employment opportunities</p>
+                  <p class='text2'>UNLEASH <span>your earning</span> POTENTIAL</p>
+                </div><!--End of mainTextDiv-->
+              </div><!--End of col-sm-12-->
+            </div><!--End of row-->
+            <div class='row'>
+              <div class='col-xs-12 col-md-6 col-md-offset-3'>
+                <div id='loginDiv'  ng-controller='indexLoginController as loginCtrl'>
+                  <form novalidate class='simple-form'>
+                    <div class="form-group col-sm-6">
+                      <label for="exampleInputEmail1">Email address</label>
+                        <input type="email" class="form-control" ng-model="user.email" id="exampleInputEmail1" placeholder="Email">
+                    </div>
+                    <div class="form-group col-sm-6">
+                      <label for="exampleInputPassword1">Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" ng-model='user.password' placeholder="Password">
+                    </div>
+                    <div class='form-group form-group-login col-xs-12'>
+                      <input type="submit" class="btn btn-login raised" ng-click='loginCtrl.locate(user)' value='Login'></input>
+                      <a href="/signup" class="btn btn-login raised"><span class="fa fa-user"></span> Signup</a>
+                      <span class="label label-default">Not a member, click register</span>
+                    </div>
+                  </form>
+                  <!--HOW DO I SUBMIT INFO FOR VALIDATING AND THEN REDIRECT TO PAGE-->
+                  <!--<a href='portfolio' class='btn btn-login raised' role='button'>Login</a>-->
+                      
+                </div><!--End of loginDiv-->
+              </div><!--End of col-xs-12-->
+            </div><!--End of row-->
+          </div><!--End of container-fluid-->
+        </div><!--End of main-->
+      </div><!--End of fullBody-->
     <div class="col-sm-8 col-sm-offset-2">
       <div class="jumbotron text-center">
         <h1>Express Authentication</h1>
