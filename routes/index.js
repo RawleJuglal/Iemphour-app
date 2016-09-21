@@ -1,6 +1,15 @@
 var express = require('express');
 var passport = require('passport');
 var multer = require('multer');
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './uploads')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now())
+  }
+})
+var upload = multer({ storage: storage })
 var router = express.Router();
 
 /* GET home page. */
@@ -25,7 +34,7 @@ router.get('/login', function(req, res, next) {
 router.get('/signup', function(req, res) {  
   res.render('signup.ejs', { message: req.flash('loginMessage') });
 })
-    .post('/signup', multer({ dest: './uploads/'}).single('stateID'), passport.authenticate('local-signup', {  
+    .post('/signup', upload.single('stateID'), passport.authenticate('local-signup', {  
       successRedirect: '/profile',
       failureRedirect: '/signup',
       failureFlash: true,
