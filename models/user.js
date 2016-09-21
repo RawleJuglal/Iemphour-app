@@ -9,8 +9,7 @@ var userSchema = mongoose.Schema({
         mInitial: String,
         lastName: String,
         phoneNumber: String,
-        cpassword: String,
-        stateIdImage:{ data: Buffer, contentType: String}
+        cpassword: String
     },
 });
 
