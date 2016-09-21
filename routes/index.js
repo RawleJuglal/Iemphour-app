@@ -1,5 +1,6 @@
 var express = require('express');
 var passport = require('passport');
+var multer = require('multer');
 var router = express.Router();
 
 /* GET home page. */
@@ -24,7 +25,7 @@ router.get('/login', function(req, res, next) {
 router.get('/signup', function(req, res) {  
   res.render('signup.ejs', { message: req.flash('loginMessage') });
 })
-    .post('/signup', passport.authenticate('local-signup', {  
+    .post('/signup', multer({ dest: './uploads/'}).single('stateID'), passport.authenticate('local-signup', {  
       successRedirect: '/profile',
       failureRedirect: '/signup',
       failureFlash: true,
